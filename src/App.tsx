@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Results} from './components/Results';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
+import {GlobalStyles} from './styles';
+import {InputTest} from './components/inputTest';
 
-function App() {
+const App: React.FC = () => {
+  const { userInput, text } = useSelector((state: RootState) => state.root);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyles />
+      <InputTest />
+      {userInput === text && <Results />}
     </div>
   );
-}
+};
 
 export default App;
